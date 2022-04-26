@@ -1,4 +1,22 @@
-<img src="readme-styles.svg" width="0" height="0" alt="Styles">
+DISCLAIMER: Easier to read in Visual Studio Code because styles in markdown are not supported in github.
+
+<style>
+bold {
+    font-weight: bold;
+}
+
+green {
+    color: #0eb676;
+}
+
+aqua {
+    color: #12a3c6;
+}
+
+white {
+    color: #cccccc;
+}
+</style>
 
 # <aqua>Remote Visual Studio Code</aqua> Server
 
