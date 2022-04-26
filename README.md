@@ -1,29 +1,8 @@
-<style>
+# <span style="color: #12a3c6;">Remote Visual Studio Code</span> Server
 
-    
-bold {
-    font-weight: bold;
-}
+Repository for the <span style="font-weight: bold">><span style="color: #12a3c6;">Remote Visual Studio Code</span></span> server.
 
-green {
-    color: #0eb676;
-}
-
-aqua {
-    color: #12a3c6;
-}
-
-white {
-    color: #cccccc;
-}
-
-</style>
-
-# <aqua>Remote Visual Studio Code</aqua> Server
-
-Repository for the <bold><aqua>Remote Visual Studio Code</aqua></bold> server.
-
-## <green>Table of Contents</green>
+## <span style="color: #0eb676;">Table of Contents</span>
 
 <ul>
 
@@ -40,11 +19,11 @@ Repository for the <bold><aqua>Remote Visual Studio Code</aqua></bold> server.
 
 <div id="usage">
 
-# <aqua>Usage</aqua>
+# <span style="color: #12a3c6;">Usage</span>
 
 <div id="installation">
 
-## <green>Installation</green>
+## <span style="color: #0eb676;">Installation</span>
 
 #### Install via Yarn
 
@@ -60,11 +39,11 @@ $ npm install
 
 ### Adding your `.env` file
 
-<p><bold>$</bold> node scripts/env.js
+<p><span style="font-weight: bold">$</span> node scripts/env.js
 
-<green>? </green><bold>Enter a MongoDB URI: </bold><aqua>mongodb+srv://USERNAME:PASSWORD@DATABASE.rxwax.mongodb.net/DATABASE?retryWrites=true&w=majority</aqua>
+<span style="color: #0eb676;">? </span><span style="font-weight: bold">Enter a MongoDB URI: </span><span style="color: #12a3c6;">mongodb+srv://USERNAME:PASSWORD@DATABASE.rxwax.mongodb.net/DATABASE?retryWrites=true&w=majority</span>
 
-<green>? </green><bold>Enter a port number: </bold><aqua>8000</aqua>
+<span style="color: #0eb676;">? </span><span style="font-weight: bold">Enter a port number: </span><span style="color: #12a3c6;">8000</span>
 
 </p>
 
@@ -93,35 +72,35 @@ $ npm run start
 
 <div id="contributing">
 
-# <aqua>Contributing</aqua>
+# <span style="color: #12a3c6;">Contributing</span>
 
-This project is <aqua>sperated</aqua> into a few sections.
+This project is <span style="color: #12a3c6;">sperated</span> into a few sections.
 
 <div id="backend">
 
-## <green>Backend</green>
+## <span style="color: #0eb676;">Backend</span>
 
-The main code for the server is in the <aqua>src/server.ts</aqua> and the following folders:
+The main code for the server is in the <span style="color: #12a3c6;">src/server.ts</span> and the following folders:
 
--   <aqua>src/api</aqua> - The API for the server.
--   <aqua>src/models</aqua> - The models for the database of server.
--   <aqua>src/utils</aqua> - Utility functions for the server.
+-   <span style="color: #12a3c6;">src/api</span> - The API for the server.
+-   <span style="color: #12a3c6;">src/models</span> - The models for the database of server.
+-   <span style="color: #12a3c6;">src/utils</span> - Utility functions for the server.
 
 </div>
 
 <div id="frontend">
 
-## <green>Frontend</green>
+## <span style="color: #0eb676;">Frontend</span>
 
 The frontend has two different parts:
 
--   <aqua>src/pages</aqua> - The pages for the server.
+-   <span style="color: #12a3c6;">src/pages</span> - The pages for the server.
 
     -   Routing for the UI. Each page has 2 files: a `meta` file, and a `ejs` file. The EJS file is the HTML file for the page, and the `meta` file tells the server what the page is, the route, title, meta tags, web typescript, css, javascript, and more.
 
     -   Example of a page:
 
-    <aqua>src/pages/data/index.ejs.json</aqua>
+    <span style="color: #12a3c6;">src/pages/data/index.ejs.json</span>
 
     ```JSON
     {
@@ -165,15 +144,15 @@ The frontend has two different parts:
     }
     ```
 
-    <aqua>src/pages/pages/index.ejs</aqua>
+    <span style="color: #12a3c6;">src/pages/pages/index.ejs</span>
 
     ```html
     <h1>Hello world!</h1>
     ```
 
--   <aqua>src/ts</aqua> - Web Typescript files.
+-   <span style="color: #12a3c6;">src/ts</span> - Web Typescript files.
     -   Web TypeScript, or `bundles`, are TypeScript files that are compiled into a minfied file with a random name, for example: `_d85favsog.js`. Then they are assigned a route like `/api/bundle/_d85favsog.js`. The browser can then access them from their original names, listed as dependencies in their `meta` file.
-    -   <aqua>src/ts/min/minify.js</aqua> - A script that compiles and minfies all web TypeScript files.
+    -   <span style="color: #12a3c6;">src/ts/min/minify.js</span> - A script that compiles and minfies all web TypeScript files.
         <br>
         Minify files:
         ```bash
@@ -185,18 +164,18 @@ The frontend has two different parts:
 
 <div id="api">
 
-## <green>API</green>
+## <span style="color: #0eb676;">API</span>
 
-The <aqua>API (src/api)</aqua> is the main API for the server.
+The <span style="color: #12a3c6;">API (src/api)</span> is the main API for the server.
 
 It contains:
 
--   <aqua>src/api/api.ts</aqua> - The express router focused on configuring the API on startup. Includes: `Folder routing (Folders transform into routes)`, and `Web TypeScript routing (adds routes for the compiled web TypeScript)`
+-   <span style="color: #12a3c6;">src/api/api.ts</span> - The express router focused on configuring the API on startup. Includes: `Folder routing (Folders transform into routes)`, and `Web TypeScript routing (adds routes for the compiled web TypeScript)`
 
--   <aqua>src/api/routes</aqua> - The routes folder, which contains the routes for the API.
+-   <span style="color: #12a3c6;">src/api/routes</span> - The routes folder, which contains the routes for the API.
 
     Example of a route:
-    <aqua>src/api/routes/weather/grab.ts</aqua>
+    <span style="color: #12a3c6;">src/api/routes/weather/grab.ts</span>
 
     ```TS
     import { Request, Response } from 'express';
@@ -213,14 +192,14 @@ It contains:
     }
     ```
 
--   <aqua>src/api/database</aqua> - The database folder, which handles establishing a connection to the database. The app will only start once the database is connected.
+-   <span style="color: #12a3c6;">src/api/database</span> - The database folder, which handles establishing a connection to the database. The app will only start once the database is connected.
 
 </div>
 
 </div>
 
-# <aqua>License</aqua>
+# <span style="color: #12a3c6;">License</span>
 
-<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode"><aqua>CC BY-NC-ND 3.0</aqua></a>
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode"><span style="color: #12a3c6;">CC BY-NC-ND 3.0</span></a>
 
-This project is licensed under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode"><aqua>CC BY-NC-ND 3.0</aqua></a> license.
+This project is licensed under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode"><span style="color: #12a3c6;">CC BY-NC-ND 3.0</span></a> license.
