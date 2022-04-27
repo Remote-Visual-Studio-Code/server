@@ -8,6 +8,8 @@ let textEditor: any;
 let terminalInput: any;
 let terminal: any;
 
+let first: boolean = true;
+
 function init() {
     PROJECT_NAME = 'Project';
     filesOpen = [];
@@ -24,7 +26,7 @@ function init() {
 
         const command = terminalInput.value;
 
-        const output = 'Stuff';
+        const output = `Output for command ${command}`;
 
         addTerminalOutput(command, output);
 
@@ -59,7 +61,9 @@ function closeFiles() {
 }
 
 function addTerminalOutput(command: string, output: string) {
+    if (first) terminal.innerHTML = '';
     terminal.innerHTML += `<span class="bold"><span class="blue">~/${PROJECT_NAME}</span> $ ${command}</span><br>${output}<br>`;
+    first = false;
 }
 
 function initTerminal() {

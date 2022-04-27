@@ -20,7 +20,7 @@
 }
 
 .terminal-input {
-    background: #222831;
+    background: var(--secondary);
     border-radius: 20px;
     border: none;
     padding: 10px;
