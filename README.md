@@ -159,6 +159,7 @@ The frontend has two different parts:
                 "content": "home, index, page"
             }
         ],
+        "header": "<another>header</tag>\n<another></tag>", // Add more tags to the header
         // This code executes on the server
         "callback": "logger.info('Index loaded!', 'Router');" // The logger class is default imported for all callbacks
     }

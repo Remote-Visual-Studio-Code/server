@@ -1,0 +1,5 @@
+.files {
+    grid-area: 1 / 1 / 2 / 2;
+    background: var(--primary);
+    overflow: hidden;
+}

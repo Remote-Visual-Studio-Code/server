@@ -1,0 +1,30 @@
+.terminal {
+    padding: 10px;
+    grid-area: 1 / 3 / 2 / 4;
+    background: var(--primary);
+    max-width: 33vw;
+    overflow: hidden;
+}
+
+#terminal-text {
+    overflow-y: auto;
+    background: var(--primary);
+    border: none;
+    resize: none;
+    width: 100%;
+    height: 80%;
+    padding: 15px;
+    max-height: 100vh;
+    border-radius: 20px;
+    background-color: var(--secondary);
+}
+
+.terminal-input {
+    background: #222831;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    color: #EEEEEE;
+    outline: none;
+    width: 95%;
+}

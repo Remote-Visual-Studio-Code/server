@@ -1,0 +1,34 @@
+<div class="editor-wrapper">
+    <div class="files">
+        <h1>Files</h1>
+
+        <br>
+
+        <button onclick="openFirstFile()">Open file</button>
+        <button onclick="closeFiles()">Close files</button>
+    </div>
+
+    <div class="text-editor-wrapper">
+        <div class="text-editor-no-files active">
+            <h1>No files open</h1>
+            <p>You can open files on your left.</p>
+        </div>
+        
+        <div class="text-editor">
+            <h1>Text Editor</h1>
+        </div>
+    </div>
+
+    <div class="terminal">
+        <div id="terminal-text"></div>
+
+        <br>
+
+        <input class="terminal-input" type="text" placeholder="Enter a command">
+    </div>
+</div>
+
+<script>
+    init();
+    initTerminal();
+</script>

@@ -1,11 +1,12 @@
 import bodyparser from 'body-parser';
-import { Application } from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
 
 type Options = {
     url_parsers: { url_encoded: boolean; json: boolean };
     cors_policy: { origin: string };
     view_engine: { engine: string; folder: string };
+    public: { folder: string };
     routers: [string, any][];
     pages: any;
 };
@@ -46,20 +47,25 @@ export default class ApplicationOptions {
             this.app.set('views', this.options.view_engine.folder);
         };
 
+        const applyPublicDirs = (): void => {
+            this.app.use(express.static(this.options.public.folder));
+        };
+
         const applyAppRouters = (): void => {
             this.options.routers.forEach(([path, router]) => {
                 this.app.use(path, router);
             });
         };
 
-        const enableWebPages = (): void => {
+        const enableSitePages = (): void => {
             this.options.pages(this.app);
         };
 
         applyUrlParsers();
         applyCorsPolicy();
         applyViewEngine();
+        applyPublicDirs();
         applyAppRouters();
-        enableWebPages();
+        enableSitePages();
     }
 }

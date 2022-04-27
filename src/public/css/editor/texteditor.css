@@ -1,0 +1,24 @@
+.text-editor-wrapper {
+    grid-area: 1 / 2 / 2 / 3;
+    background: var(--primary);
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+.text-editor-no-files {
+    padding: 10px;
+    display: none;
+}
+
+.text-editor-no-files.active {
+    display: block;
+}
+
+.text-editor {
+    display: none;
+}
+
+.text-editor.active {
+    display: block;
+}

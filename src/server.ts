@@ -24,6 +24,9 @@ const app = express();
             engine: 'ejs',
             folder: './out/src/pages/out',
         },
+        public: {
+            folder: './src/public',
+        },
         routers: [['/api', require('./api/api').default]],
         pages: pages,
     });

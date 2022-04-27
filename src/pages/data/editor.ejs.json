@@ -1,0 +1,29 @@
+{
+    "name": "editor.ejs",
+    "title": "Remote VSCode Editor",
+    "route": {
+        "override": false
+    },
+    "dependencies": [
+        "editor"
+    ],
+    "imports": {
+        "css": [
+            "http://localhost:8000/css/editor/editor.css",
+            "http://localhost:8000/css/editor/files.css",
+            "http://localhost:8000/css/editor/terminal.css",
+            "http://localhost:8000/css/editor/texteditor.css",
+            "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+        ],
+        "js": [],
+        "custom_js": []
+    },
+    "meta": [
+        {
+            "name": "viewport",
+            "content": "width=device-width"
+        }
+    ],
+    "header": "<meta charset=\"utf-8\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>",
+    "callback": ""
+}

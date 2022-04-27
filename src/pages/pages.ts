@@ -20,6 +20,7 @@ type Meta = {
     dependencies: string[];
     imports: { css: string[]; js: string[]; custom_js: string[] };
     meta: { name: string; content: string }[];
+    header: string;
     callback: string;
 };
 
@@ -90,7 +91,7 @@ export function compile(
         customJsString += `    <script>\n${js}\n</script>\n`;
     }
 
-    const header = `\n${metaString}\n\n${cssString}\n${dependencyString}\n${customJsString}\n    <title>${title}</title>\n`;
+    const header = `\n    ${meta.header}\n${metaString}\n\n${cssString}\n${dependencyString}\n${customJsString}\n    <title>${title}</title>\n`;
 
     const page = template
         .replace('||#PAGE_HEADER#||', `${header}`)
@@ -117,6 +118,14 @@ export function compile(
             // @ts-ignore
             method = meta.route.method; // eslint-disable-line prefer-destructuring
         }
+    } else {
+        // @ts-ignore
+        route = `/${
+            route
+                .split('/')
+                .pop()
+                ?.split('.')[0]
+        }`;
     }
 
     path = path.replace(/^\.\/src\/pages\/pages\//, ''); // eslint-disable-line no-param-reassign

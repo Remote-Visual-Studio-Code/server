@@ -1,0 +1,32 @@
+:root {
+    --primary: #222831;
+    --secondary: #393e46;
+    --blue: #00ADB5;
+    --white: #EEEEEE;
+}
+
+body {
+    height: 100vh;
+    background: var(--secondary);
+    font-family: 'Fira Code', monospace;
+}
+
+.blue {
+    color: var(--blue);
+}
+
+.white {
+    color: var(--white);
+}
+
+.editor-wrapper {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr 0.75fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0p;
+    grid-row-gap: 0px;
+    color: var(--white);
+    min-height: 98vh;
+    max-height: 98vh;
+    overflow: hidden;
+}
