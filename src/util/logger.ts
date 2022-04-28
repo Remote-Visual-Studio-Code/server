@@ -48,7 +48,7 @@ function replacement(name: string): string {
     return REPLACEMENTS.find(r => r.name === name)?.replacement ?? name;
 }
 
-function _log(message: string, color: Color, overrideLocation?: string): void {
+function _log(msg: string, color: Color, overrideLocation?: string, error?: Error): void {
     const location = overrideLocation
         ? overrideLocation
         : replacement(
@@ -63,6 +63,8 @@ function _log(message: string, color: Color, overrideLocation?: string): void {
               ),
           );
 
+    const message = error ? `${msg}: ${error}` : msg;
+
     console.log(
         `${colors.bold(LOCATION_COLOR(`[${location}]`))} ${color(message)}`,
     );
@@ -75,13 +77,17 @@ const info = (message: string, overrideLocation?: string): void => {
 
 const warn = (message: string, overrideLocation?: string): void => {
     if (overrideLocation) _log(message, colors.yellow, overrideLocation);
-    _log(message, colors.yellow);
+    else _log(message, colors.yellow);
 };
 
 const error = (message: string, overrideLocation?: string): void => {
     if (overrideLocation) _log(message, colors.red, overrideLocation);
-    _log(message, colors.red);
+    else _log(message, colors.red);
 };
+
+const errorThrow = (message: string, error?: string, overrideLocation?: string): void => {
+    _log(message, colors.red, overrideLocation ? overrideLocation : undefined, error ? error : undefined);
+}
 
 const infoWithStatus = (
     message: string,
@@ -156,6 +162,7 @@ export {
     info,
     warn,
     error,
+    errorThrow,
     infoWithStatus,
     warnWithStatus,
     errorWithStatus,
