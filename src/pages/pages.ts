@@ -149,29 +149,19 @@ export function compile(
 
     switch (method) {
         case 'GET':
-            app.get(route, (req: Request, res: Response) => {
-                run(req, res);
-            });
+            app.get(route, run);
             break;
         case 'POST':
-            app.post(route, (req: Request, res: Response) => {
-                run(req, res);
-            });
+            app.post(route, run);
             break;
         case 'DELETE':
-            app.delete(route, (req: Request, res: Response) => {
-                run(req, res);
-            });
+            app.delete(route, run);
             break;
         case 'PUT':
-            app.put(route, (req: Request, res: Response) => {
-                run(req, res);
-            });
+            app.put(route, run);
             break;
         case 'PATCH':
-            app.patch(route, (req: Request, res: Response) => {
-                run(req, res);
-            });
+            app.patch(route, run);
             break;
         default:
             throw new Error(`Method ${method} not found`);
