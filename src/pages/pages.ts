@@ -11,7 +11,7 @@ import * as logger from '../util/logger';
 
 const env = process.env.NODE_ENV || 'development';
 const url =
-    env === 'development' ? 'http://localhost:8000' : process.env.PROD_URL;
+    env === 'development' ? `http://localhost:${process.env.PORT}` : process.env.PROD_URL;
 
 type Meta = {
     name: string;
