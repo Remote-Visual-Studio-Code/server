@@ -42,7 +42,9 @@ export default (req: Request, res: Response): void | Response => {
                 .status(409)
                 .json({ success: false, message: 'Already exists' });
 
-        infoWithStatusAndJson('Created', res, 201, {
+        const message = `Created session { sid: "${sid}", password: "${password}", url: "${url}" }`;
+
+        infoWithStatusAndJson(message, res, 201, {
             success: true,
             message: 'Created',
             sid: sid,

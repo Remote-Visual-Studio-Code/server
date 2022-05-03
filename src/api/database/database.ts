@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable import/order */
 import logger = require('../../util/logger');
 import { Application } from 'express';
@@ -12,7 +13,7 @@ export = {
 
         try {
             await mongoose.connect(URI);
-        } catch (err: Error) {
+        } catch (err) {
             return logger.errorThrow(`Failed to connect to database`, err);
         }
 

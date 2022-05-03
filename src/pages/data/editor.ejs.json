@@ -15,7 +15,9 @@
             "http://localhost:8000/css/editor/texteditor.css",
             "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
         ],
-        "js": [],
+        "js": [
+            "https://kit.fontawesome.com/f8c3208a74.js"
+        ],
         "custom_js": []
     },
     "meta": [

@@ -2,16 +2,12 @@
 require('dotenv').config();
 
 import ApplicationOptions from './util/ApplicationOptions';
-import express, { Request, Response } from 'express';
+import express from 'express';
 import pages from './pages/pages';
 
 const app = express();
 
 (async (): Promise<void> => {
-    app.get('/a', (_req: Request, res: Response) => {
-        res.send('Remote VSCode main server');
-    });
-
     new ApplicationOptions(app, {
         url_parsers: {
             url_encoded: true,

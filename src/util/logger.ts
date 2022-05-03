@@ -1,22 +1,22 @@
-import { Response } from 'express';
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import colors, { Color } from 'colors';
+import { Response } from 'express';
 
-function _getCallerFileName() {
+function getCallerFileName(): any {
     const original = Error.prepareStackTrace;
     let caller;
 
     try {
         const err = new Error();
-        let current;
 
-        Error.prepareStackTrace = (_err: any, stack: any) => {
+        Error.prepareStackTrace = (_err: any, stack: any): any => {
             return stack;
         };
 
         if (!err.stack) return null;
 
         // @ts-ignore
-        current = err.stack.shift().getFileName();
+        const current = err.stack.shift().getFileName();
 
         while (err.stack.length) {
             // @ts-ignore
@@ -24,7 +24,9 @@ function _getCallerFileName() {
 
             if (current !== caller) break;
         }
-    } catch (err) {}
+    } catch (err) {
+        /* empty */
+    }
 
     Error.prepareStackTrace = original;
     return caller;
@@ -48,20 +50,26 @@ function replacement(name: string): string {
     return REPLACEMENTS.find(r => r.name === name)?.replacement ?? name;
 }
 
-function _log(msg: string, color: Color, overrideLocation?: string, error?: Error): void {
-    const location = overrideLocation
-        ? overrideLocation
-        : replacement(
-              capitalizeFirstLetter(
-                  _getCallerFileName()
-                      .split('.')[0]
-                      .split('/')
-                      .pop()
-                      .split('\\')
-                      .pop()
-                      .replace('index', 'main'),
-              ),
-          );
+// eslint-disable-next-line no-underscore-dangle
+function log(
+    msg: string,
+    color: Color,
+    overrideLocation?: string,
+    error?: any,
+): void {
+    const location =
+        overrideLocation ||
+        replacement(
+            capitalizeFirstLetter(
+                getCallerFileName()
+                    .split('.')[0]
+                    .split('/')
+                    .pop()
+                    .split('\\')
+                    .pop()
+                    .replace('index', 'main'),
+            ),
+        );
 
     const message = error ? `${msg}: ${error}` : msg;
 
@@ -71,23 +79,27 @@ function _log(msg: string, color: Color, overrideLocation?: string, error?: Erro
 }
 
 const info = (message: string, overrideLocation?: string): void => {
-    if (overrideLocation) _log(message, MESSAGE_COLOR, overrideLocation);
-    else _log(message, MESSAGE_COLOR);
+    if (overrideLocation) log(message, MESSAGE_COLOR, overrideLocation);
+    else log(message, MESSAGE_COLOR);
 };
 
 const warn = (message: string, overrideLocation?: string): void => {
-    if (overrideLocation) _log(message, colors.yellow, overrideLocation);
-    else _log(message, colors.yellow);
+    if (overrideLocation) log(message, colors.yellow, overrideLocation);
+    else log(message, colors.yellow);
 };
 
 const error = (message: string, overrideLocation?: string): void => {
-    if (overrideLocation) _log(message, colors.red, overrideLocation);
-    else _log(message, colors.red);
+    if (overrideLocation) log(message, colors.red, overrideLocation);
+    else log(message, colors.red);
 };
 
-const errorThrow = (message: string, error?: string, overrideLocation?: string): void => {
-    _log(message, colors.red, overrideLocation ? overrideLocation : undefined, error ? error : undefined);
-}
+const errorThrow = (
+    message: string,
+    error?: any,
+    overrideLocation?: string,
+): void => {
+    log(message, colors.red, overrideLocation || undefined, error || undefined);
+};
 
 const infoWithStatus = (
     message: string,
@@ -95,7 +107,7 @@ const infoWithStatus = (
     status: number,
     overrideLocation?: string,
 ): Response => {
-    if (overrideLocation) _log(message, MESSAGE_COLOR, overrideLocation);
+    if (overrideLocation) log(message, MESSAGE_COLOR, overrideLocation);
     info(message);
     return res.status(status);
 };
@@ -106,7 +118,7 @@ const warnWithStatus = (
     status: number,
     overrideLocation?: string,
 ): Response => {
-    if (overrideLocation) _log(message, colors.yellow, overrideLocation);
+    if (overrideLocation) log(message, colors.yellow, overrideLocation);
     warn(message);
     return res.status(status);
 };
@@ -117,7 +129,7 @@ const errorWithStatus = (
     status: number,
     overrideLocation?: string,
 ): Response => {
-    if (overrideLocation) _log(message, colors.red, overrideLocation);
+    if (overrideLocation) log(message, colors.red, overrideLocation);
     error(message);
     return res.status(status);
 };
@@ -129,7 +141,7 @@ const infoWithStatusAndJson = (
     json: any,
     overrideLocation?: string,
 ): Response => {
-    if (overrideLocation) _log(message, MESSAGE_COLOR, overrideLocation);
+    if (overrideLocation) log(message, MESSAGE_COLOR, overrideLocation);
     info(message);
     return res.status(status).json(json);
 };
@@ -141,7 +153,7 @@ const warnWithStatusAndJson = (
     json: any,
     overrideLocation?: string,
 ): Response => {
-    if (overrideLocation) _log(message, colors.yellow, overrideLocation);
+    if (overrideLocation) log(message, colors.yellow, overrideLocation);
     warn(message);
     return res.status(status).json(json);
 };
@@ -153,7 +165,7 @@ const errorWithStatusAndJson = (
     json: any,
     overrideLocation?: string,
 ): Response => {
-    if (overrideLocation) _log(message, colors.red, overrideLocation);
+    if (overrideLocation) log(message, colors.red, overrideLocation);
     error(message);
     return res.status(status).json(json);
 };

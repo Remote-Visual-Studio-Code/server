@@ -1,11 +1,14 @@
 <div class="editor-wrapper">
     <div class="files">
-        <h1>Files</h1>
+        <div class="files-header">
+            <span class="files-title">Files</span>
 
-        <br>
-
-        <button onclick="openFirstFile()">Open file</button>
-        <button onclick="closeFiles()">Close files</button>
+            <div class="files-actions">
+                <i id="add-file" class="fa-solid fa-file-arrow-up files-add-file"></i>
+                <span class="action-separator"></span>
+                <i id="add-folder" class="fa-solid fa-folder files-add-folder"></i>
+            </div>
+        </div>
     </div>
 
     <div class="text-editor-wrapper">
@@ -28,7 +31,4 @@
     </div>
 </div>
 
-<script>
-    init();
-    initTerminal();
-</script>
+<script> init(); </script>

@@ -3,3 +3,20 @@
     background: var(--primary);
     overflow: hidden;
 }
+
+.files-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+}
+
+.files-header .files-actions .action-separator {
+    height: 6px;
+    width: 0;
+    border-right: 1px solid white;
+    margin-right: 9px;
+}
+
+/* .files-header .files-actions {
+    margin-top: 
+} */

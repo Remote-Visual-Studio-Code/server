@@ -34,6 +34,8 @@ function init() {
 
         terminalInput.value = '';
     });
+
+    initTerminal();
 }
 
 function openFirstFile() {
