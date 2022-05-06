@@ -24,7 +24,7 @@ walk(path.join(__dirname, 'routes'), (err: any, results: string[]) => {
             object.obj(req, res);
         });
 
-        const route = `/${object.name.replace('\\', '/')}`;
+        const route = `/${object.name.replace(/\\/g, '/')}`;
 
         router.use(route, objectRouter);
         info(`Added route ${route}`);
