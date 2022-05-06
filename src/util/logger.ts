@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import colors, { Color } from 'colors';
 import { Response } from 'express';
 
@@ -50,7 +49,6 @@ function replacement(name: string): string {
     return REPLACEMENTS.find(r => r.name === name)?.replacement ?? name;
 }
 
-// eslint-disable-next-line no-underscore-dangle
 function log(
     msg: string,
     color: Color,

@@ -1,7 +1,4 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-plusplus */
-
+/* eslint-disable consistent-return, no-param-reassign, no-plusplus */
 import path from 'path';
 import fs from 'fs';
 

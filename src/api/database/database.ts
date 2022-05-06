@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-/* eslint-disable import/order */
-import logger = require('../../util/logger');
 import { Application } from 'express';
 import mongoose from 'mongoose';
+
+import logger = require('../../util/logger');
 
 export = {
     connect: async (app: Application): Promise<void> => {

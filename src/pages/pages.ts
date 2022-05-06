@@ -11,7 +11,9 @@ import * as logger from '../util/logger';
 
 const env = process.env.NODE_ENV || 'development';
 const url =
-    env === 'development' ? `http://localhost:${process.env.PORT}` : process.env.PROD_URL;
+    env === 'development'
+        ? `http://localhost:${process.env.PORT}`
+        : process.env.PROD_URL;
 
 type Meta = {
     name: string;
@@ -172,7 +174,9 @@ const metaFolder = './src/pages/data/';
 const ejsFolder = './src/pages/pages/';
 
 function getMetadataFromPage(page: string): Meta {
-    const content = fs.readFileSync(`${metaFolder}${page}.json`, 'utf8');
+    const content = fs
+        .readFileSync(`${metaFolder}${page}.json`, 'utf8')
+        .replace(`http://localhost:${process.env.PORT}`, `${url}`);
 
     const meta = JSON.parse(content);
 

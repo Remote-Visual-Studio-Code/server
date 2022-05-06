@@ -1,8 +1,9 @@
-/* eslint-disable import/no-named-as-default-member, import/no-named-as-default, node/no-missing-require, no-new, import/order, import/first */
+/* eslint-disable import/no-named-as-default-member, import/no-named-as-default, node/no-missing-require, no-new, import/first */
 require('dotenv').config();
 
-import ApplicationOptions from './util/ApplicationOptions';
 import express from 'express';
+
+import ApplicationOptions from './util/ApplicationOptions';
 import pages from './pages/pages';
 
 const app = express();
@@ -21,7 +22,7 @@ const app = express();
             folder: './out/src/pages/out',
         },
         public: {
-            folder: './src/public',
+            folder: './out/src/public',
         },
         routers: [['/api', require('./api/api').default]],
         pages: pages,
@@ -29,5 +30,3 @@ const app = express();
 
     await require('./api/database/database').connect(app);
 })();
-
-export {};

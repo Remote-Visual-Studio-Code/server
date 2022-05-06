@@ -9,6 +9,21 @@
                 <i id="add-folder" class="fa-solid fa-folder files-add-folder"></i>
             </div>
         </div>
+
+        <div class="files-files">
+            <div class="files-file">
+                <i class="fa-solid fa-file-code"></i>
+                <span class="files-file-name">index.html</span>
+            </div>
+            <div class="files-file">
+                <i class="fa-solid fa-file-code"></i>
+                <span class="files-file-name">app.js</span>
+            </div>
+            <div class="files-file">
+                <i class="fa-solid fa-file-code"></i>
+                <span class="files-file-name">style.css</span>
+            </div>
+        </div>
     </div>
 
     <div class="text-editor-wrapper">
@@ -18,7 +33,11 @@
         </div>
         
         <div class="text-editor">
-            <h1>Text Editor</h1>
+            <div class="text-editor-header">
+                <p id="text-editor-file-name">No files open</p>
+            </div>
+
+            <div id="text-editor-files-container"></div>
         </div>
     </div>
 
@@ -31,4 +50,8 @@
     </div>
 </div>
 
-<script> init(); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+    init();
+</script>

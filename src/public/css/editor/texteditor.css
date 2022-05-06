@@ -22,3 +22,9 @@
 .text-editor.active {
     display: block;
 }
+
+.text-editor-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

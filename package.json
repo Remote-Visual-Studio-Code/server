@@ -8,7 +8,7 @@
         "startl": "yarn lint && yarn start",
         "buildweb": "cd src/ts && rm -rf ./out/min && mkdir out\\min && tsc && node min/minify.js",
         "moveweb": "rm -rf out/src/web && mkdir out\\src\\web && mv src/ts/out/min/* out/src/web && rm -rf src/ts/out && rm -rf out/src/web/index.html",
-        "compile": "tsc && copyfiles -u 1 src/**/*.ejs out/src && copyfiles -u 1 src/**/*.json out/src && yarn run buildweb && yarn run moveweb && node scripts/minify.js",
+        "compile": "tsc && copyfiles -u 1 src/**/*.ejs out/src && copyfiles -u 1 src/**/*.json out/src && rm -rf out/src/public && cp -R src/public out/src/public/ && yarn run buildweb && yarn run moveweb && node scripts/minify.js",
         "lint": "eslint src --fix"
     },
     "author": "Exortions",

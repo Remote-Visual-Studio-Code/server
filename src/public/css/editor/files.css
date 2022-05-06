@@ -20,3 +20,12 @@
 /* .files-header .files-actions {
     margin-top: 
 } */
+
+
+.files-files {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 1rem;
+}
