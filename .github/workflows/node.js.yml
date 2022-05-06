@@ -29,4 +29,3 @@ jobs:
     - run: rm -rf node_modules && yarn install --frozen-lockfile
     - run: yarn lint
     - run: yarn run tsc
-    - run: yarn test --if-present
