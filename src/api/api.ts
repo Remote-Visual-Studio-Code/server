@@ -16,7 +16,7 @@ walk(path.join(__dirname, 'routes'), (err: any, results: string[]) => {
         object.obj = require(file).default;
         object.name = file
             .split('api\\routes\\')[1]
-            .replace('\\', '/')
+            .replaceAll('\\', '/')
             .replace('.js', '');
 
         const objectRouter = express.Router();
