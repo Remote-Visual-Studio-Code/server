@@ -9,7 +9,8 @@ import cors from 'cors';
 import { connect } from './database/database';
 import loadTokens from './token/tokens';
 import socket from './socket/socket';
-import SocketEvent from './socket/Event';
+import Event from './socket/Event';
+import logger from './util/logger';
 
 // events
 import DeleteSessionEvent from './socket/events/session/delete-session';
@@ -39,7 +40,7 @@ let io: Server;
 let serv: any;
 
 (async () => {
-    const events: SocketEvent<any>[] = [];
+    const events: Event<any>[] = [];
 
     events.push(new DeleteSessionEvent());
     events.push(new CreateSessionEvent());
@@ -53,15 +54,15 @@ let serv: any;
     connected = await connect();
 
     if (!connected) {
-        console.error('Could not connect to database');
+        logger.error('Could not connect to database');
         process.exit(1);
     } else {
-        console.log('Connected to database');
+        logger.info('Connected to database');
     }
 
     if (require.main === module) {
         serv = app.listen(port, () => {
-            console.log(`Started server on port ${port}`);
+            logger.info(`Started server on port ${port}`);
         });
     }
 })();

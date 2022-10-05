@@ -1,5 +1,6 @@
 // @ts-ignore - weird error, not recognizing socket.io types
 import { Server, Socket } from 'socket.io';
+import logger from '../util/logger';
 import http from 'http';
 
 import Event from './Event';
@@ -15,7 +16,7 @@ export default async function socket(events: Event<any>[] = []): Promise<Server>
     });
 
     io.on('connection', (socket: Socket) => {
-        console.log(`Socket connected: ${socket.id}`);
+        logger.debug(`Socket connected: ${socket.id}`);
 
         socket.emit('connected', JSON.stringify({ message: 'Connected to socket server' }));
 
@@ -25,7 +26,7 @@ export default async function socket(events: Event<any>[] = []): Promise<Server>
     });
 
     server.listen(port, () => {
-        console.log(`Started socket server on port ${port}`);
+        logger.info(`Started socket server on port ${port}`);
     });
 
     return io;

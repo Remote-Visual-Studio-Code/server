@@ -1,4 +1,5 @@
 import * as Session from '../../../models/Session';
+import logger from '../../../util/logger';
 import SocketEvent from '../../Event';
 import * as uuid from 'uuid';
 
@@ -10,7 +11,7 @@ export default class CreateSessionEvent extends SocketEvent<{ password: string; 
             const { password, expires } = data;
 
             if (!password) {
-                console.log(`Invalid password: ${password}`);
+                logger.debug(`Invalid password: ${password}`);
 
                 this.socket.emit('session.session-created', JSON.stringify({ error: 'Invalid password', sid: null }));
 
@@ -18,7 +19,7 @@ export default class CreateSessionEvent extends SocketEvent<{ password: string; 
             }
 
             if (!expires) {
-                console.log(`Invalid expiry date: ${expires}`);
+                logger.debug(`Invalid expiry date: ${expires}`);
 
                 this.socket.emit(
                     'session.session-created',
@@ -32,7 +33,7 @@ export default class CreateSessionEvent extends SocketEvent<{ password: string; 
             const sid = uuid.v4();
 
             if (!expiry || expiry.getTime() < Date.now()) {
-                console.log(`Invalid expiry date: ${expires}`);
+                logger.debug(`Invalid expiry date: ${expires}`);
 
                 this.socket.emit(
                     'session.session-created',

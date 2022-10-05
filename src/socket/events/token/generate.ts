@@ -1,3 +1,4 @@
+import logger from '../../../util/logger';
 import SocketEvent from '../../Event';
 import jwt from 'jsonwebtoken';
 
@@ -10,7 +11,7 @@ export default class TokenGenerateEvent extends SocketEvent<{ sid: string }> {
         super('token.generate', (data: { sid: string }) => {
             if (!this.socket) return;
 
-            console.log(`Generating token for ${this.socket.id} with data: ${data}`);
+            logger.debug(`Generating token for ${this.socket.id} with data: ${data}`);
 
             const { sid } = data;
 
@@ -20,7 +21,7 @@ export default class TokenGenerateEvent extends SocketEvent<{ sid: string }> {
             }
 
             if (!validateSid(sid)) {
-                console.log(`Invalid sid: ${sid}`);
+                logger.debug(`Invalid sid: ${sid}`);
 
                 this.socket.emit('token.generated', JSON.stringify({ error: 'Invalid sid', token: null }));
 
