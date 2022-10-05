@@ -16,4 +16,4 @@ jobs:
         with:
           node-version: 14
           cache: 'yarn'
-          cache-dependency-path: .github/workflow-cache/yarn.lock
+          cache-dependency-path: .github/workflows/yarn.lock
