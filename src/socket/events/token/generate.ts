@@ -4,12 +4,14 @@ import jwt from 'jsonwebtoken';
 
 import { validateSid } from '../../../util/util';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'secret';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export default class TokenGenerateEvent extends SocketEvent<{ sid: string }> {
     constructor() {
         super('token.generate', (data: { sid: string }) => {
             if (!this.socket) return;
+
+            if (!JWT_SECRET) throw new Error('No JWT secret');
 
             logger.debug(`Generating token for ${this.socket.id} with data: ${data}`);
 
