@@ -20,25 +20,25 @@ export default class DeleteSessionEvent extends SocketEvent<{ token: string }> {
                     password: string;
                 };
             } catch (ex: any) {
-                this.socket.emit('session.delete-session', { success: false, error: 'Invalid session' });
+                this.socket.emit('session.session-deleted', { success: false, error: 'Invalid session' });
                 return;
             }
 
             const valid = await Session.validate(decoded);
 
             if (!valid) {
-                this.socket.emit('session.delete-session', { success: false, error: 'Invalid session' });
+                this.socket.emit('session.session-deleted', { success: false, error: 'Invalid session' });
                 return;
             }
 
             const removed = await Session.remove(decoded);
 
             if (!removed) {
-                this.socket.emit('session.delete-session', { success: false, error: 'Failed to remove session' });
+                this.socket.emit('session.session-deleted', { success: false, error: 'Failed to remove session' });
                 return;
             }
 
-            this.socket.emit('session.delete-session', { success: true });
+            this.socket.emit('session.session-deleted', { success: true });
         });
     }
 }
