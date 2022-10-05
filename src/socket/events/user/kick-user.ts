@@ -18,7 +18,11 @@ export default class UserConnectEvent extends Event<{ token: string; password: s
             let decoded;
 
             try {
-                decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { sid: string };
+                const secret = process.env.JWT_SECRET;
+
+                if (!secret) throw new Error('No JWT secret');
+
+                decoded = jwt.verify(data.token, secret) as { sid: string };
             } catch (ex: any) {
                 this.socket.emit('user.kicked', { success: false, error: 'Invalid session' });
                 return;

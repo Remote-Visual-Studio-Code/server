@@ -29,7 +29,11 @@ export default class ExecuteCommandEvent extends Event<{
                 let sid: string;
 
                 try {
-                    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { sid: string };
+                    const secret = process.env.JWT_SECRET;
+
+                    if (!secret) throw new Error('No JWT secret');
+
+                    const decoded = jwt.verify(data.token, secret) as { sid: string };
                     sid = decoded.sid;
                 } catch (ex) {
                     this.socket.emit('terminal.execute', { success: false, error: 'Invalid session' });

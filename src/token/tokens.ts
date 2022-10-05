@@ -6,7 +6,11 @@ export function encrypt(req: Request, res: Response): void {
 
     const parsed = JSON.parse(data);
 
-    const token = jwt.sign({ ...parsed }, process.env.JWT_SECRET || 'secret', {
+    const secret = process.env.JWT_SECRET;
+
+    if (!secret) throw new Error('No JWT secret');
+
+    const token = jwt.sign({ ...parsed }, secret, {
         expiresIn: '1h',
     });
 
@@ -19,7 +23,11 @@ export function verify(req: Request, res: Response): void {
     const { token } = req.body;
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
+        const secret = process.env.JWT_SECRET;
+
+        if (!secret) throw new Error('No JWT secret');
+
+        const decoded = jwt.verify(token, secret);
 
         res.status(200).json({
             valid: true,
