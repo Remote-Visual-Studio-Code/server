@@ -49,7 +49,7 @@ export default class UserConnectEvent extends Event<{ token: string; password: s
 
             Session.remove_user({ sid, password }, user);
 
-            this.server.local.emit('user.kicked', { sid: sid, user: user });
+            this.server.local.emit('user.kick', { sid: sid, user: user });
         });
     }
 }
