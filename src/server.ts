@@ -35,7 +35,7 @@ app.get('/', (_req: Request, res: Response) => {
     });
 });
 
-let connected: boolean = false;
+let connected = false;
 let io: Server;
 let serv: any;
 

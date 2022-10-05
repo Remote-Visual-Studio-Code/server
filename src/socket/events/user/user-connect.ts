@@ -84,7 +84,9 @@ export default class UserConnectEvent extends SocketEvent<{
                         socket.emit('user.connect', { success: false, error: 'Connection denied' });
                     }
 
-                    server.removeListener('user.request-connection-response', () => {});
+                    server.removeListener('user.request-connection-response', () => {
+                        return;
+                    });
                 });
             },
         );
