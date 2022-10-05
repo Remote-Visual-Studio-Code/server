@@ -27,7 +27,7 @@ export default class UserConnectEvent extends SocketEvent<{
                 const { token, password, user, location, permission } = data;
 
                 if (!token || !password || !user || !location || !permission) {
-                    this.socket.emit('user.connected', { success: false, error: 'Invalid request' });
+                    this.socket.emit('user.connect', { success: false, error: 'Invalid request' });
                     return;
                 }
 
