@@ -1,4 +1,4 @@
-import SocketEvent from '../SocketEvent';
+import SocketEvent from '../Event';
 
 export default class DisconnectEvent extends SocketEvent<{}> {
     constructor() {

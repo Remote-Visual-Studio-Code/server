@@ -1,8 +1,8 @@
 import * as Session from '../../../models/Session';
-import SocketEvent from '../../SocketEvent';
+import Event from '../../Event';
 import jwt from 'jsonwebtoken';
 
-export default class UserConnectEvent extends SocketEvent<{ token: string; password: string; user: string }> {
+export default class UserConnectEvent extends Event<{ token: string; password: string; user: string }> {
     constructor() {
         super('user.kick', async (data: { token: string; password: string; user: string }) => {
             if (!this.socket) return;

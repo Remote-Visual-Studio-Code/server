@@ -1,16 +1,17 @@
 // @ts-ignore - weird error, not recognizing socket.io types
 import { Socket, Server } from 'socket.io';
 
-export default class SocketEvent<T> {
+export default class Event<T> {
     private _name: string;
     private _callback: (data: T) => void;
     private _socket: Socket | null;
     private _server: Server | null;
 
-    constructor(name: string, callback: (data: T) => void, socket?: Socket) {
+    constructor(name: string, callback: (data: T) => void, socket?: Socket, server?: Server) {
         this._name = name;
         this._callback = callback;
         this._socket = socket || null;
+        this._server = server || null;
     }
 
     public fire(socket: Socket, server: Server): (data: T) => void {

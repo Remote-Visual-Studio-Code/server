@@ -1,4 +1,4 @@
-import SocketEvent from '../../SocketEvent';
+import SocketEvent from '../../Event';
 import jwt from 'jsonwebtoken';
 
 import { validateSid } from '../../../util/util';

@@ -1,5 +1,5 @@
 import * as Session from '../../../models/Session';
-import SocketEvent from '../../SocketEvent';
+import SocketEvent from '../../Event';
 import * as uuid from 'uuid';
 
 export default class CreateSessionEvent extends SocketEvent<{ password: string; expires: string }> {

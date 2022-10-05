@@ -1,5 +1,5 @@
 import * as Session from '../../../models/Session';
-import SocketEvent from '../../SocketEvent';
+import SocketEvent from '../../Event';
 import jwt from 'jsonwebtoken';
 
 export default class DeleteSessionEvent extends SocketEvent<{ token: string }> {

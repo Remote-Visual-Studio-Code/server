@@ -9,7 +9,7 @@ import cors from 'cors';
 import { connect } from './database/database';
 import loadTokens from './token/tokens';
 import socket from './socket/socket';
-import SocketEvent from './socket/SocketEvent';
+import SocketEvent from './socket/Event';
 
 // events
 import DeleteSessionEvent from './socket/events/session/delete-session';
