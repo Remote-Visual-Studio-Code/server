@@ -21,7 +21,9 @@ export default async function socket(events: Event<any>[] = []): Promise<Server>
         socket.emit('connected', JSON.stringify({ message: 'Connected to socket server' }));
 
         events.forEach((event: Event<any>) => {
-            socket.on(event.name, event.fire(socket, io));
+            socket.on(event.name, (data: any) => {
+                event.fire(socket, io)(JSON.parse(data));
+            });
         });
     });
 
