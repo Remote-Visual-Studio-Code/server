@@ -1,8 +1,9 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 // @ts-ignore - weird error, not recognizing socket.io types
 import { Server } from 'socket.io';
 import parser from 'body-parser';
 import express from 'express';
+import path from 'path';
 import cors from 'cors';
 
 // modules
@@ -20,19 +21,24 @@ import GenerateTokenEvent from './socket/events/token/generate';
 import UserKickEvent from './socket/events/user/kick-user';
 import DisconnectEvent from './socket/events/disconnect';
 
+const __dirname = process.cwd();
+
 const app: express.Application = express();
 const port: number = Number(process.env.PORT) || 3000;
 
 app.use(parser.urlencoded({ extended: true }));
-app.use(parser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({ origin: '*' }));
+app.use(parser.json());
 
 loadTokens(app);
 
-app.get('/', (_req: Request, res: Response) => {
-    res.json({
-        hello: 'world',
-    });
+app.get('*', (_req: Request, res: Response, next: NextFunction) => {
+    try {
+        res.sendFile(path.join(__dirname, 'public', 'page.html'));
+    } catch (ex) {
+        next(ex);
+    }
 });
 
 let connected = false;
