@@ -16,8 +16,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build
-        run: yarn run webpack
+      - name: Build server
+        run: yarn run webpack --config webpack.server.js
+    
+      - name: Build react
+        run: yarn run webpack --config webpack.react.js
 
       - name: Cleanup
         run: rm -rf dist

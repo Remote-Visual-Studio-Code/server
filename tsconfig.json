@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "ES2020",
     "module": "commonjs",
-    "rootDir": "./src",
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "./dist",
@@ -31,6 +31,6 @@
   "exclude": [
     "node_modules",
     "dist",
-    "test"
+    "test",
   ]
 }

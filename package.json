@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Server for Remote Visual Studio Code.",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config webpack.server.js && webpack --config webpack.react.js",
+    "css": "npx tailwindcss -o public/tailwind.css --minify",
     "test": "jest",
     "start": "yarn build && node dist/server.js",
     "lint": "eslint src --ext .ts"
@@ -22,6 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.6.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.5.2",
     "uuid": "^9.0.0"
@@ -31,6 +34,8 @@
     "@types/jest": "^29.1.1",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.7.23",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "@types/socket.io": "^3.0.2",
     "@types/socket.io-client": "^3.0.0",
     "@types/supertest": "^2.0.12",

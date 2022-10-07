@@ -1,3 +1,4 @@
+/* eslint-disable */
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const dotenv = require('dotenv-webpack');
@@ -25,6 +26,7 @@ module.exports = smp.wrap({
 		rules: [
 			{
 				test: /\.ts$/,
+				exclude: /client/,
 				use: [
 					{
 						loader: 'ts-loader',
