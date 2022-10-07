@@ -19,7 +19,11 @@ module.exports = smp.wrap({
 						},
 					}
 				],
-			}
+			},
+            {
+                test: /\.css$/i,
+                use: 'css-loader',
+            }
         ],
     },
     mode: 'development',

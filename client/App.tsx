@@ -1,5 +1,6 @@
 import React from 'react';
 
+import NotFound from './components/404';
 import Router from './Router';
 
 const App: React.FC = () => {
@@ -9,7 +10,7 @@ const App: React.FC = () => {
 
     const Component = routes[route];
 
-    if (!Component) return <div>404 Not Found</div>;
+    if (!Component) return <NotFound />;
 
     return <Component />;
 };
