@@ -141,7 +141,7 @@ export default function Editor(): React.ReactElement {
 
     const handleSelectFile = (index: number): void => {
         setSelectedFileIndex(index);
-    }
+    };
 
     // for testing
     // handleOpenFile(data.files[0]);
