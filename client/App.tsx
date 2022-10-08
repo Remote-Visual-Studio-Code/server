@@ -17,7 +17,7 @@ const darkTheme = createTheme({
 
 const App: React.FC = () => {
     const route = window.location.pathname;
-    
+
     const routes = Router.getRoutes();
 
     const Component = routes[route];
