@@ -143,11 +143,6 @@ export default function Editor(): React.ReactElement {
         setSelectedFileIndex(index);
     };
 
-    // for testing
-    // handleOpenFile(data.files[0]);
-    // handleOpenFile(data.files[1]);
-    // handleOpenFile(data.files[2]);
-
     return (
         <div className="wrapper">
             <div className="header">
