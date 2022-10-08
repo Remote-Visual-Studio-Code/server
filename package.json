@@ -7,7 +7,10 @@
     "css": "npx tailwindcss -o public/tailwind.css --minify",
     "test": "jest",
     "start": "yarn build && node dist/server.js",
-    "lint": "eslint src --ext .ts"
+    "lint": "eslint src --ext .ts",
+    "watch:client": "concurrently \"webpack --config webpack.server.js && node dist/server.js\" \"webpack --config webpack.react.js --watch\"",
+    "watch:server": "concurrently \"webpack --config webpack.react.js\" \"webpack --config webpack.server.js --watch && node dist/server.js\"",
+    "watch": "concurrently \"webpack --config webpack.react.js --watch\" \"webpack --config webpack.server.js --watch && node dist/server.js\""
   },
   "main": "dist/server.js",
   "author": "Exortions",
@@ -47,6 +50,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
+    "concurrently": "^7.4.0",
     "css-loader": "^6.7.1",
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.24.0",
