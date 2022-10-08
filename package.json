@@ -9,7 +9,7 @@
     "lint": "eslint src --ext .ts",
     "watch:client": "concurrently \"webpack --config webpack.server.js && node dist/server.js\" \"webpack --config webpack.react.js --watch\"",
     "watch:server": "concurrently \"webpack --config webpack.react.js\" \"webpack --config webpack.server.js --watch && node dist/server.js\"",
-    "css": "postcss client/assets/tailwind.css -o client/assets/main.css",
+    "css": "postcss client/assets/tailwind.css -o public/main.css",
     "watch": "concurrently \"webpack --config webpack.react.js --watch\" \"webpack --config webpack.server.js --watch && node dist/server.js\""
   },
   "main": "dist/server.js",
