@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { Typography } from '@mui/material';
+import { Typography, Paper } from '@mui/material';
 
 import MonacoEditor, { Monaco } from '@monaco-editor/react';
 
@@ -30,20 +30,22 @@ export default function Editor(props: { openFiles: any; setOpenFiles: any; openF
         );
     } else {
         return (
-            <MonacoEditor
-                height="80vh"
-                width="100%"
-                language={props.openFile.type}
-                theme="vs-dark"
-                value={props.openFile.source}
-                beforeMount={handleEditorWillMount}
-                onMount={handleEditorDidMount}
-                options={{
-                    minimap: {
-                        enabled: false,
-                    },
-                }}
-            />
+            <Paper elevation={17} style={{ marginRight: 16, marginBottom: 16, minHeight: '80vh' }}>
+                <MonacoEditor
+                    height="80vh"
+                    width="100%"
+                    language={props.openFile.type}
+                    theme="vs-dark"
+                    value={props.openFile.source}
+                    beforeMount={handleEditorWillMount}
+                    onMount={handleEditorDidMount}
+                    options={{
+                        minimap: {
+                            enabled: false,
+                        },
+                    }}
+                />
+            </Paper>
         );
     }
 }
