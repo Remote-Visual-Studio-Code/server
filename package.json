@@ -10,7 +10,8 @@
         "watch:client": "concurrently \"webpack --config webpack.server.js && node dist/server.js\" \"webpack --config webpack.react.js --watch\"",
         "watch:server": "concurrently \"webpack --config webpack.react.js\" \"webpack --config webpack.server.js --watch && node dist/server.js\"",
         "css": "postcss client/assets/tailwind.css -o client/assets/main.css",
-        "watch": "concurrently \"webpack --config webpack.react.js --watch\" \"webpack --config webpack.server.js --watch && node dist/server.js\""
+        "watch": "concurrently \"webpack --config webpack.react.js --watch\" \"webpack --config webpack.server.js --watch && node dist/server.js\"",
+        "prepare": "husky install"
     },
     "main": "dist/server.js",
     "author": "Exortions",
@@ -63,6 +64,7 @@
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-prettier": "^4.2.1",
+        "husky": "^8.0.1",
         "jest": "^29.1.2",
         "postcss": "^8.4.17",
         "postcss-cli": "^10.0.0",
