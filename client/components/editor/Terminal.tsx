@@ -50,7 +50,10 @@ export default function Terminal(props: {
                             <span className="terminal-command-output">
                                 {command.output.map((output: string): any => (
                                     <div>
-                                        <td dangerouslySetInnerHTML={{ __html: convert.toHtml(output) }} style={{ paddingLeft: '16px' }} />
+                                        <td
+                                            dangerouslySetInnerHTML={{ __html: convert.toHtml(output) }}
+                                            style={{ paddingLeft: '16px' }}
+                                        />
                                     </div>
                                 ))}
                             </span>
@@ -62,7 +65,7 @@ export default function Terminal(props: {
                     </span>
                 </div>
 
-                <div className="terminal-in" style={{ marginLeft: '16px', marginRight: '16px'}}>
+                <div className="terminal-in" style={{ marginLeft: '16px', marginRight: '16px' }}>
                     <Divider />
 
                     <TextField
@@ -71,11 +74,13 @@ export default function Terminal(props: {
                         sx={{ marginTop: 1.5, width: '100%' }}
                         variant="standard"
                         InputProps={{
-                            startAdornment: <InputAdornment position="start">
-                                <span className="terminal-command-prefix" style={{ color: '#00ADB5' }}>
-                                    ~/{props.project}{' '}
-                                </span>
-                            </InputAdornment>,
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <span className="terminal-command-prefix" style={{ color: '#00ADB5' }}>
+                                        ~/{props.project}{' '}
+                                    </span>
+                                </InputAdornment>
+                            ),
                         }}
                     />
                 </div>

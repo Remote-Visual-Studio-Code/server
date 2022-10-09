@@ -4,7 +4,13 @@ import { Typography, Paper } from '@mui/material';
 
 import MonacoEditor, { Monaco } from '@monaco-editor/react';
 
-export default function Editor(props: { openFiles: any; setOpenFiles: any; openFile: any; setChanges: any; changes: any; }): JSX.Element {
+export default function Editor(props: {
+    openFiles: any;
+    setOpenFiles: any;
+    openFile: any;
+    setChanges: any;
+    changes: any;
+}): JSX.Element {
     const monacoRef = useRef(null);
 
     function handleEditorWillMount(monaco: Monaco) {

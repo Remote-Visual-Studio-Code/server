@@ -1,26 +1,26 @@
 name: Webpack
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    push:
+        branches: ['master']
+    pull_request:
+        branches: ['master']
 
 jobs:
-  pack:
-    runs-on: ubuntu-latest
+    pack:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+        steps:
+            - uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
 
-      - name: Build server
-        run: yarn run webpack --config webpack.server.js
-    
-      - name: Build react
-        run: yarn run webpack --config webpack.react.js
+            - name: Build server
+              run: yarn run webpack --config webpack.server.js
 
-      - name: Cleanup
-        run: rm -rf dist
+            - name: Build react
+              run: yarn run webpack --config webpack.react.js
+
+            - name: Cleanup
+              run: rm -rf dist

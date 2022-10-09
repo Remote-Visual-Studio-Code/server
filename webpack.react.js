@@ -9,21 +9,21 @@ module.exports = smp.wrap({
     module: {
         rules: [
             {
-				test: /\.tsx$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'ts-loader',
-						options: {
-							transpileOnly: true,
-						},
-					}
-				],
-			},
+                test: /\.tsx$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                        },
+                    },
+                ],
+            },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
-            }
+            },
         ],
     },
     mode: 'development',
