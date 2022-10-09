@@ -29,7 +29,8 @@ export default function Terminal(props: {
                         <div key={index} className="terminal-command" style={{ color: '#CCCCCC' }}>
                             <span className="terminal-command-cmd" style={{ paddingLeft: '16px' }}>
                                 <span className="terminal-command-prefix" style={{ color: '#00ADB5' }}>
-                                    ~/{props.project}{props.cwd}{' '}
+                                    ~/{props.project}
+                                    {props.cwd}{' '}
                                 </span>
                                 <span className="terminal-command-name" style={{ color: '#CCCCCC' }}>
                                     {command.command}
@@ -62,7 +63,8 @@ export default function Terminal(props: {
                     ))}
 
                     <span className="terminal-command-prefix" style={{ color: '#00ADB5', paddingLeft: '16px' }}>
-                        ~/{props.project}{props.cwd}{' '}
+                        ~/{props.project}
+                        {props.cwd}{' '}
                     </span>
                 </div>
 
@@ -78,7 +80,8 @@ export default function Terminal(props: {
                             startAdornment: (
                                 <InputAdornment position="start">
                                     <span className="terminal-command-prefix" style={{ color: '#00ADB5' }}>
-                                        ~/{props.project}{props.cwd}{' '}
+                                        ~/{props.project}
+                                        {props.cwd}{' '}
                                     </span>
                                 </InputAdornment>
                             ),
