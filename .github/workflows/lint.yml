@@ -1,20 +1,30 @@
 name: Manual Lint
 
+on:
+    workflow_dispatch:
+        inputs:
+            branch:
+                description: 'Branch to lint'
+                required: true
+                default: 'master'
+
 jobs:
     lint:
         runs-on: ubuntu-latest
-
         steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
+            - name: 'Checkout Repository'
+              uses: actions/checkout@v3
               with:
-                  node-version: 12.x
+                  ref: ${{ github.event.inputs.branch }}
+            - name: 'Setup Node.js'
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '14'
+            - name: 'Install Dependencies'
+              run: yarn install --frozen-lockfile --non-interactive
 
-            - name: Install dependencies
-              run: yarn install --frozen-lockfile --check-files --non-interactive
-
-            - name: Lint with ESLint
+            - name: 'Lint with ESLint'
               run: yarn run eslint --ext .ts,.tsx --max-warnings 0 .
 
-            - name: Lint with Prettier
+            - name: 'Lint with Prettier'
               run: yarn run prettier --check .
