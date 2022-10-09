@@ -5,6 +5,7 @@ import { Divider, Grid, Box, Snackbar, Alert } from '@mui/material';
 import UploadFileFilled from '@mui/icons-material/UploadFile';
 
 import Navigation from '../components/editor/Navigation';
+import Terminal from '../components/editor/Terminal';
 import FileTree from '../components/editor/FileTree';
 import Header from '../components/editor/Header';
 import Editor from '../components/editor/Editor';
@@ -68,6 +69,22 @@ export default function MainEditor(): React.ReactElement {
     const [terminalSelectError, setTerminalSelectError] = React.useState(false);
     const [editorNavValue, setEditorNavValue] = React.useState(0);
 
+    const defaultTerminalCommands: { command: string; args: string[]; output: string[] }[] = [];
+
+    // for testing:
+    defaultTerminalCommands.push({
+        command: 'yarn',
+        args: ['install'],
+        output: [
+            'yarn install v1.22.19',
+            '\x1b[90m[1/4]\x1b[00m Resolving packages...',
+            '\x1b[92msuccess\x1b[00m Already up-to-date.',
+            'Done in 0.041s.',
+        ],
+    });
+
+    const [terminalCommands, setTerminalCommands] = React.useState(defaultTerminalCommands);
+
     const defaultOpenFiles: { name: string; type: string; path: string }[] = [];
     const [openFiles, setOpenFiles] = React.useState(defaultOpenFiles);
     const defaultOpenFile: { name: string | null; type: string | null; path: string | null } = {
@@ -120,6 +137,12 @@ export default function MainEditor(): React.ReactElement {
         }
 
         setTerminalSelectError(false);
+    };
+
+    const handleTerminalCommand = (command: string, args: string[]): void => {
+        setTerminalCommands([...terminalCommands, { command, args, output: [] }]);
+
+        // TODO: send command to backend
     };
 
     React.useEffect(() => {
@@ -185,11 +208,21 @@ export default function MainEditor(): React.ReactElement {
                                 {/* Editor */}
 
                                 <div>
-                                    <Editor openFiles={openFiles} setOpenFiles={setOpenFiles} openFile={openFile} setChanges={setChanges} changes={changes} />
+                                    <Editor
+                                        openFiles={openFiles}
+                                        setOpenFiles={setOpenFiles}
+                                        openFile={openFile}
+                                        setChanges={setChanges}
+                                        changes={changes}
+                                    />
                                 </div>
                             </Grid>
                             <Grid item xs={4}>
-                                {/* Terminal */}
+                                <Terminal
+                                    project={data.project}
+                                    terminalCommands={terminalCommands}
+                                    handleTerminalCommand={handleTerminalCommand}
+                                />
                             </Grid>
                         </Grid>
                     </Box>
