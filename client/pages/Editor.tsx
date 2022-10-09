@@ -57,6 +57,7 @@ export default function MainEditor(): React.ReactElement {
         setSaveAlert(true);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function getFileIcon(_type: string): React.ReactElement {
         // for now:
         return <UploadFileFilled />;

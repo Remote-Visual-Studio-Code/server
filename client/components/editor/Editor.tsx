@@ -13,11 +13,13 @@ export default function Editor(props: {
 }): JSX.Element {
     const monacoRef = useRef(null);
 
-    function handleEditorWillMount(monaco: Monaco) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    function handleEditorWillMount(_monaco: Monaco) {
         return;
     }
 
-    function handleEditorDidMount(editor: any, monaco: Monaco) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    function handleEditorDidMount(_editor: any, monaco: Monaco) {
         // @ts-ignore
         monacoRef.current = monaco;
     }
