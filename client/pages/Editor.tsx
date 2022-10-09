@@ -16,7 +16,7 @@ import Editor from '../components/editor/Editor';
 /* 10: #00ADB5 */
 
 export default function MainEditor(): React.ReactElement {
-    document.body.style.backgroundColor = '#222831';
+    // document.body.style.backgroundColor = '#222831'; - old background color
 
     function sendChangesToBackend(): void {
         return;
@@ -38,13 +38,13 @@ export default function MainEditor(): React.ReactElement {
                 {
                     name: 'logo.svg',
                     type: 'svg',
-                    source: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0L0 100h100z" fill="#00ADB5"/></svg>',
+                    source: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">\n   <path d="M50 0L0 100h100z" fill="#00ADB5"/>\n</svg>',
                     path: '/logo.svg',
                 },
                 {
                     name: 'package.json',
                     type: 'json',
-                    source: '{ "name": "TheNextBigThing", "version": "1.0.0", "description": "The Next Big Thing", "main": "index.ts", "scripts": { "start": "node index.ts" }, "author": "John Doe", "license": "MIT" }',
+                    source: '{\n    "name": "TheNextBigThing",\n    "version": "1.0.0",\n    "description": "The Next Big Thing",\n    "main": "index.ts",\n    "scripts": {\n        "start": "node index.ts"\n    },\n    "author": "John Doe",\n    "license": "MIT"\n}',
                     path: '/package.json',
                 },
             ],
