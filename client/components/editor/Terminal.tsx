@@ -10,6 +10,7 @@ export default function Terminal(props: {
     project: string;
     terminalCommands: { command: string; args: string[]; output: string[] }[];
     handleTerminalCommand: (command: string, args: string[]) => void;
+    cwd: string;
 }): JSX.Element {
     // @ts-ignore
     const args: { arg: string; dash: boolean }[] = props.terminalCommands[props.terminalCommands.length - 1].args.map(
@@ -28,7 +29,7 @@ export default function Terminal(props: {
                         <div key={index} className="terminal-command" style={{ color: '#CCCCCC' }}>
                             <span className="terminal-command-cmd" style={{ paddingLeft: '16px' }}>
                                 <span className="terminal-command-prefix" style={{ color: '#00ADB5' }}>
-                                    ~/{props.project}{' '}
+                                    ~/{props.project}{props.cwd}{' '}
                                 </span>
                                 <span className="terminal-command-name" style={{ color: '#CCCCCC' }}>
                                     {command.command}
@@ -61,7 +62,7 @@ export default function Terminal(props: {
                     ))}
 
                     <span className="terminal-command-prefix" style={{ color: '#00ADB5', paddingLeft: '16px' }}>
-                        ~/{props.project}{' '}
+                        ~/{props.project}{props.cwd}{' '}
                     </span>
                 </div>
 
@@ -77,7 +78,7 @@ export default function Terminal(props: {
                             startAdornment: (
                                 <InputAdornment position="start">
                                     <span className="terminal-command-prefix" style={{ color: '#00ADB5' }}>
-                                        ~/{props.project}{' '}
+                                        ~/{props.project}{props.cwd}{' '}
                                     </span>
                                 </InputAdornment>
                             ),

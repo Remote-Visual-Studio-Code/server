@@ -28,6 +28,7 @@ export default function MainEditor(): React.ReactElement {
             project: 'TheNextBigThing',
             userURL: '/user/john-doe',
             terminals: ['zsh', 'bash', 'fish', 'cmd', 'powershell', 'sh'],
+            cwd: '',
             files: [
                 {
                     name: 'index.ts',
@@ -219,6 +220,7 @@ export default function MainEditor(): React.ReactElement {
                             </Grid>
                             <Grid item xs={4}>
                                 <Terminal
+                                    cwd={data.cwd}
                                     project={data.project}
                                     terminalCommands={terminalCommands}
                                     handleTerminalCommand={handleTerminalCommand}
