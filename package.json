@@ -11,7 +11,8 @@
         "watch:server": "concurrently \"webpack --config webpack.react.js\" \"webpack --config webpack.server.js --watch && node dist/server.js\"",
         "css": "postcss client/assets/tailwind.css -o client/assets/main.css",
         "watch": "concurrently \"webpack --config webpack.react.js --watch\" \"webpack --config webpack.server.js --watch && node dist/server.js\"",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "buildDocker": "docker build -t rvsc-server ."
     },
     "main": "dist/server.js",
     "author": "Exortions",
