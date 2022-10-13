@@ -1,4 +1,6 @@
 server
+  recv connection
+    emit connected { message }
   recv token.generate { sid }
     emit token.generated { success, token, error }
   recv session.create-session { password, expires }
