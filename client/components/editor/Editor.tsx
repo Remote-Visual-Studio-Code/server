@@ -14,15 +14,15 @@ export default function Editor(props: {
     const monacoRef = useRef(null);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    function handleEditorWillMount(_monaco: Monaco) {
+    const handleEditorWillMount = (_monaco: Monaco): void => {
         return;
-    }
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    function handleEditorDidMount(_editor: any, monaco: Monaco) {
+    const handleEditorDidMount = (_editor: any, monaco: Monaco): void => {
         // @ts-ignore
         monacoRef.current = monaco;
-    }
+    };
 
     if (props.openFiles.length < 1) {
         return (

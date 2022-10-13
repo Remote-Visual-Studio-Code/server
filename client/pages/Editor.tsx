@@ -18,11 +18,11 @@ import Editor from '../components/editor/Editor';
 export default function MainEditor(): React.ReactElement {
     // document.body.style.backgroundColor = '#222831'; - old background color
 
-    function sendChangesToBackend(): void {
+    const sendChangesToBackend = (): void => {
         return;
-    }
+    };
 
-    function retrieveBackendData(): any {
+    const retrieveBackendData = (): any => {
         return {
             user: 'John Doe',
             project: 'TheNextBigThing',
@@ -50,18 +50,18 @@ export default function MainEditor(): React.ReactElement {
                 },
             ],
         };
-    }
+    };
 
-    function onCtrlS(): void {
+    const onCtrlS = (): void => {
         sendChangesToBackend();
         setSaveAlert(true);
-    }
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    function getFileIcon(_type: string): React.ReactElement {
+    const getFileIcon = (_type: string): React.ReactElement => {
         // for now:
         return <UploadFileFilled />;
-    }
+    };
 
     const data = retrieveBackendData();
 

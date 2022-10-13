@@ -5,7 +5,7 @@ import { Avatar, Typography, Breadcrumbs, Link, Divider } from '@mui/material';
 export default function Header(props: { user: string; userURL: string; project: string }): JSX.Element {
     const data = props;
 
-    function shortenName(username: string): string {
+    const shortenName = (username: string): string => {
         const split = username.split(' ');
 
         if (split.length > 2) {
@@ -23,7 +23,7 @@ export default function Header(props: { user: string; userURL: string; project: 
 
             return shortened;
         }
-    }
+    };
 
     const shortenedName = shortenName(data.user);
 
