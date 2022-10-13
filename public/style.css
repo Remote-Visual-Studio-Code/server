@@ -1,8 +1,4 @@
-/* 60: #222831 */
-/* 30: #393E46 */
-/* 10: #00ADB5 */
-
 ::-webkit-scrollbar {
-    width: 0;
-    background: transparent;
+  width: 0;
+  background: transparent;
 }
