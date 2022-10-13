@@ -20,6 +20,7 @@ import Editor from '../components/editor/Editor';
 export default function MainEditor(): React.ReactElement {
     // document.body.style.backgroundColor = '#222831'; - old background color
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [socket, setSocket] = React.useState<Socket>();
 
     const SOCK_PORT = 8080;
