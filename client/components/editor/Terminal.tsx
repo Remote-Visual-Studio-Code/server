@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Paper, Divider, TextField, InputAdornment } from '@mui/material';
 
+import dompurify from 'dompurify';
+
 import Convert from 'ansi-to-html';
 
 const convert = new Convert();
@@ -50,14 +52,19 @@ export default function Terminal(props: {
                             <br />
 
                             <span className="terminal-command-output">
-                                {command.output.map((output: string): any => (
-                                    <div>
-                                        <td
-                                            dangerouslySetInnerHTML={{ __html: convert.toHtml(output) }}
-                                            style={{ paddingLeft: '16px' }}
-                                        />
-                                    </div>
-                                ))}
+                                {command.output.map((output: string): any => {
+                                    const html = convert.toHtml(output);
+                                    const sanitizer = dompurify.sanitize;
+
+                                    return (
+                                        <div>
+                                            <td
+                                                dangerouslySetInnerHTML={{ __html: sanitizer(html) }}
+                                                style={{ paddingLeft: '16px' }}
+                                            />
+                                        </div>
+                                    );
+                                })}
                             </span>
                         </div>
                     ))}
