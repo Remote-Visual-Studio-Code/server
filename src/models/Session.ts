@@ -1,4 +1,4 @@
-import mongoose, { isValidObjectId, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const SessionSchema = new Schema({
     sid: {
