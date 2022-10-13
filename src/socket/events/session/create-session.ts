@@ -18,21 +18,10 @@ export default class CreateSessionEvent extends SocketEvent<{ password: string; 
                 return;
             }
 
-            if (!expires) {
-                logger.debug(`Invalid expiry date: ${expires}`);
-
-                this.socket.emit(
-                    'session.session-created',
-                    JSON.stringify({ error: 'Invalid expiry date', sid: null }),
-                );
-
-                return;
-            }
-
             const expiry: Date = new Date(expires);
             const sid = uuid.v4();
 
-            if (!expiry || expiry.getTime() < Date.now()) {
+            if (!expires || !expiry || expiry.getTime() < Date.now()) {
                 logger.debug(`Invalid expiry date: ${expires}`);
 
                 this.socket.emit(
