@@ -15,13 +15,15 @@ jobs:
         steps:
             - name: 'Checkout Repository'
               uses: actions/checkout@v3
+
             - name: 'Setup Node.js'
               uses: actions/setup-node@v2
               with:
                   node-version: '14'
+
             - name: 'Install Dependencies'
               run: yarn install --frozen-lockfile --non-interactive
-              
+
             - name: 'Lint with ESLint'
               run: yarn run eslint --ext .ts,.tsx --max-warnings 0 .
 
