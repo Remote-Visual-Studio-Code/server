@@ -17,7 +17,7 @@ export default class DeleteSessionEvent extends SocketEvent<{ token: string }> {
             try {
                 const secret = process.env.JWT_SECRET;
 
-                if (!secret) throw new Error('No JWT secret');
+                if (!secret) throw new Error('JWT secret not set');
 
                 decoded = jwt.verify(data.token, secret) as {
                     sid: string;
