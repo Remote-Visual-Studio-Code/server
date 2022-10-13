@@ -42,7 +42,7 @@ export default class UserConnectEvent extends SocketEvent<{
                     return;
                 }
 
-                const sid = decoded.sid;
+                const { sid } = decoded;
 
                 const valid = await Session.validate({ sid, password });
 
