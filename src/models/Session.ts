@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { isValidObjectId, Schema } from 'mongoose';
 
 const SessionSchema = new Schema({
     sid: {
@@ -49,6 +49,16 @@ export type SessionAuth = {
 
 const Session = mongoose.model<SessionLike>('Session', SessionSchema);
 
+async function verifyAndFind(session: SessionAuth): Promise<{ session: SessionLike | null; valid: boolean }> {
+    if (!(await validate(session))) return { session: null, valid: false };
+
+    const found = await Session.findOne({ sid: session.sid, password: session.password });
+
+    if (found === null || !found) return { session: null, valid: false };
+
+    return { session: found, valid: true };
+}
+
 export async function validate(session: SessionAuth): Promise<boolean> {
     const found = Session.findOne({ sid: session.sid, password: session.password });
 
@@ -56,11 +66,11 @@ export async function validate(session: SessionAuth): Promise<boolean> {
 }
 
 export async function find(session: SessionAuth): Promise<SessionLike | null> {
-    if (!(await validate(session))) return null;
+    const valid = await verifyAndFind(session);
 
-    const found = await Session.findOne({ sid: session.sid, password: session.password });
+    if (!valid.valid) return null;
 
-    return found;
+    return valid.session;
 }
 
 export async function create(session: SessionAuth & { expires: Date }): Promise<SessionLike> {
@@ -80,18 +90,16 @@ export async function remove(session: SessionAuth): Promise<boolean> {
 }
 
 export async function add_user(
-    session: SessionAuth,
+    auth: SessionAuth,
     user: { user: string; permission: UserPermission },
 ): Promise<boolean> {
-    if (!(await validate(session))) return false;
+    const { session, valid } = await verifyAndFind(auth);
 
-    const found = await Session.findOne({ sid: session.sid, password: session.password });
+    if (!valid || session === null) return false;
 
-    if (found === null || !found) return false;
+    session.users_connected.push(user);
 
-    found.users_connected.push(user);
-
-    await found.save();
+    await session.save();
 
     return true;
 }
@@ -110,14 +118,12 @@ export async function remove_user(session: SessionAuth, user: string): Promise<b
     return true;
 }
 
-export async function get_users(session: SessionAuth): Promise<{ user: string; permission: UserPermission }[] | null> {
-    if (!(await validate(session))) return null;
+export async function get_users(auth: SessionAuth): Promise<{ user: string; permission: UserPermission }[] | null> {
+    const { session, valid } = await verifyAndFind(auth);
 
-    const found = await Session.findOne({ sid: session.sid, password: session.password });
+    if (!valid || session === null) return null;
 
-    if (found === null || !found || !found.users_connected) return null;
-
-    return found.users_connected;
+    return session.users_connected;
 }
 
 export default Session;
