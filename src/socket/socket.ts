@@ -22,6 +22,12 @@ export default async function socket(events: Event<any>[] = []): Promise<Server>
 
         events.forEach((event: Event<any>) => {
             socket.on(event.name, (data: any) => {
+                if (event.name === 'disconnect') {
+                    event.fire(socket, io)(null);
+
+                    return;
+                }
+
                 event.fire(socket, io)(JSON.parse(data));
             });
         });

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Divider, Grid, Box, Snackbar, Alert } from '@mui/material';
 
+import io, { Socket } from 'socket.io-client';
+
 import UploadFileFilled from '@mui/icons-material/UploadFile';
 
 import Navigation from '../components/editor/Navigation';
@@ -17,6 +19,18 @@ import Editor from '../components/editor/Editor';
 
 export default function MainEditor(): React.ReactElement {
     // document.body.style.backgroundColor = '#222831'; - old background color
+
+    const [socket, setSocket] = React.useState<Socket>();
+
+    const SOCK_PORT = 8080;
+
+    const setupSocket = (): Socket => {
+        const newSocket = io(`http://localhost:${SOCK_PORT}`);
+
+        console.debug('Socket created');
+
+        return newSocket;
+    };
 
     const sendChangesToBackend = (): void => {
         return;
@@ -161,6 +175,28 @@ export default function MainEditor(): React.ReactElement {
         if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
         return 0;
     });
+
+    React.useEffect(() => {
+        const socket = setupSocket();
+
+        setSocket(socket);
+
+        if (socket) {
+            socket.on('connected', (payload: string): void => {
+                const { message } = JSON.parse(payload);
+
+                const REQUIRED_MESSAGE = 'Connected to socket server';
+
+                console.debug(
+                    `Connected to socket with:\n message - ${message}\n required message - ${REQUIRED_MESSAGE}\n ok - ${
+                        message === REQUIRED_MESSAGE
+                    } \n id - ${socket.id}\n payload - ${payload}`,
+                );
+            });
+        } else {
+            console.error('Socket not connected');
+        }
+    }, []);
 
     return (
         <div>
