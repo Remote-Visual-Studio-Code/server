@@ -38,7 +38,7 @@ export default function MainEditor(): React.ReactElement {
         return;
     };
 
-    // @ts-ignore 
+    // @ts-ignore
     const retrieveBackendData = (): any => {
         return {
             user: 'John Doe',
@@ -109,10 +109,12 @@ export default function MainEditor(): React.ReactElement {
     });
 
     data.files.reverse();
-    
+
     const defaultSelectedFile = data.files[0];
 
-    const [selectedFileIndex, setSelectedFileIndex] = React.useState(defaultSelectedFile ? data.files.indexOf(defaultSelectedFile) : 0);
+    const [selectedFileIndex, setSelectedFileIndex] = React.useState(
+        defaultSelectedFile ? data.files.indexOf(defaultSelectedFile) : 0,
+    );
     const [terminalSelectError, setTerminalSelectError] = React.useState(false);
     const [editorNavValue, setEditorNavValue] = React.useState(0);
 

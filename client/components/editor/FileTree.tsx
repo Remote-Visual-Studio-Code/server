@@ -12,9 +12,14 @@ export default function FileTree(props: {
 }): JSX.Element {
     if (props.filesOrderedAlphabetically[0].isSkeleton) {
         return (
-            <Box sx={{ width: '100%', maxWidth: 360 }} >
+            <Box sx={{ width: '100%', maxWidth: 360 }}>
                 <List component="nav" aria-label="files">
-                    <Skeleton variant="rectangular" sx={{ marginLeft: '16px', marginRight: '16px' }} height={48} animation="wave" />
+                    <Skeleton
+                        variant="rectangular"
+                        sx={{ marginLeft: '16px', marginRight: '16px' }}
+                        height={48}
+                        animation="wave"
+                    />
                 </List>
             </Box>
         );
