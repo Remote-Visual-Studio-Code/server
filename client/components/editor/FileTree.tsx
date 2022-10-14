@@ -1,14 +1,25 @@
 import React from 'react';
 
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider } from '@mui/material';
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Skeleton } from '@mui/material';
 
 export default function FileTree(props: {
     filesOrderedAlphabetically: any[];
     selectedFileIndex: number;
+    dataFiles: any[];
     handleOpenFile: any;
     handleSelectFile: any;
     getFileIcon: any;
 }): JSX.Element {
+    if (props.filesOrderedAlphabetically[0].isSkeleton) {
+        return (
+            <Box sx={{ width: '100%', maxWidth: 360 }} >
+                <List component="nav" aria-label="files">
+                    <Skeleton variant="rectangular" sx={{ marginLeft: '16px', marginRight: '16px' }} height={48} animation="wave" />
+                </List>
+            </Box>
+        );
+    }
+
     return (
         <Box sx={{ width: '100%', maxWidth: 360 }}>
             <List component="nav" aria-label="files">
@@ -19,7 +30,7 @@ export default function FileTree(props: {
                             selected={props.selectedFileIndex === index}
                             onClick={() => {
                                 props.handleOpenFile(file);
-                                props.handleSelectFile(file.path);
+                                props.handleSelectFile(props.dataFiles.indexOf(file));
                             }}
                             style={{ marginLeft: 16, marginRight: 16, paddingLeft: 24 }}
                         >

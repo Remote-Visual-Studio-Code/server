@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import { Divider, Grid, Box, Snackbar, Alert } from '@mui/material';
@@ -37,6 +38,7 @@ export default function MainEditor(): React.ReactElement {
         return;
     };
 
+    // @ts-ignore 
     const retrieveBackendData = (): any => {
         return {
             user: 'John Doe',
@@ -72,17 +74,45 @@ export default function MainEditor(): React.ReactElement {
         setSaveAlert(true);
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const getFileIcon = (_type: string): React.ReactElement => {
         // for now:
         return <UploadFileFilled />;
     };
 
-    const data = retrieveBackendData();
+    // @ts-ignore
+    const [data, setData] = React.useState({
+        user: 'John Doe',
+        project: 'TheNextBigThing',
+        userURL: '/user/john-doe',
+        terminals: ['zsh', 'bash', 'fish', 'cmd', 'powershell', 'sh'],
+        cwd: '',
+        files: [
+            {
+                name: 'index.ts',
+                type: 'typescript',
+                source: 'console.log("Hello World!")',
+                path: '/index.ts',
+            },
+            {
+                name: 'logo.svg',
+                type: 'svg',
+                source: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">\n   <path d="M50 0L0 100h100z" fill="#00ADB5"/>\n</svg>',
+                path: '/logo.svg',
+            },
+            {
+                name: 'package.json',
+                type: 'json',
+                source: '{\n    "name": "TheNextBigThing",\n    "version": "1.0.0",\n    "description": "The Next Big Thing",\n    "main": "index.ts",\n    "scripts": {\n        "start": "node index.ts"\n    },\n    "author": "John Doe",\n    "license": "MIT"\n}',
+                path: '/package.json',
+            },
+        ],
+    });
 
     data.files.reverse();
+    
+    const defaultSelectedFile = data.files[0];
 
-    const [selectedFileIndex, setSelectedFileIndex] = React.useState(data.files[0].path);
+    const [selectedFileIndex, setSelectedFileIndex] = React.useState(defaultSelectedFile ? data.files.indexOf(defaultSelectedFile) : 0);
     const [terminalSelectError, setTerminalSelectError] = React.useState(false);
     const [editorNavValue, setEditorNavValue] = React.useState(0);
 
@@ -132,6 +162,8 @@ export default function MainEditor(): React.ReactElement {
         setEditorNavValue(newValue);
 
         const file = data.files[newValue];
+
+        if (!file) return;
 
         setOpenFile(file);
     };
@@ -238,6 +270,7 @@ export default function MainEditor(): React.ReactElement {
                                 <FileTree
                                     filesOrderedAlphabetically={filesOrderedAlphabetically}
                                     selectedFileIndex={selectedFileIndex}
+                                    dataFiles={data.files}
                                     getFileIcon={getFileIcon}
                                     handleSelectFile={handleSelectFile}
                                     handleOpenFile={handleOpenFile}
