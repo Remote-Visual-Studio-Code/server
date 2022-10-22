@@ -18,14 +18,19 @@ export default class TokenGenerateEvent extends SocketEvent<{ sid: string }> {
             const { sid } = data;
 
             if (!sid) {
-                this.socket.emit('token.generated', { success: false, error: 'Invalid session ID' });
+                logger.debug('No sid provided');
+
+                this.socket.emit('token.generated', { success: false, error: 'Invalid session ID', token: null });
                 return;
             }
 
             if (!validateSid(sid)) {
                 logger.debug(`Invalid sid: ${sid}`);
 
-                this.socket.emit('token.generated', JSON.stringify({ error: 'Invalid sid', token: null }));
+                this.socket.emit(
+                    'token.generated',
+                    JSON.stringify({ success: false, error: 'Invalid sid', token: null }),
+                );
 
                 return;
             }
@@ -34,7 +39,9 @@ export default class TokenGenerateEvent extends SocketEvent<{ sid: string }> {
                 expiresIn: '1h',
             });
 
-            this.socket.emit('token-generated', JSON.stringify({ token: token }));
+            logger.debug(`Generated token for ${this.socket.id}: ${token}`);
+
+            this.socket.emit('token-generated', JSON.stringify({ sucess: true, token: token, error: null }));
         });
     }
 }
