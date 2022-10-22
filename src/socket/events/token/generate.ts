@@ -13,7 +13,7 @@ export default class TokenGenerateEvent extends SocketEvent<{ sid: string }> {
 
             if (!JWT_SECRET) throw new Error('No JWT secret');
 
-            logger.debug(`Generating token for ${this.socket.id} with data: ${data}`);
+            logger.debug(`Generating token for ${this.socket.id} with data: ${JSON.stringify(data)}`);
 
             const { sid } = data;
 
