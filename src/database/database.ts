@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import logger from '../util/logger';
+
 export async function connect(): Promise<boolean> {
     const uri: string | undefined = process.env.MONGO_URI;
 
@@ -10,6 +12,8 @@ export async function connect(): Promise<boolean> {
 
         return true;
     } catch (err) {
+        logger.error(`Could not connect to database: ${err}`);
+
         return false;
     }
 }
